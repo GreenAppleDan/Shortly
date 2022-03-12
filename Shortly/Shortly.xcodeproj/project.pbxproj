@@ -25,6 +25,9 @@
 		92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED0427DD00EC00AEDD40 /* Color.swift */; };
 		92FDED0B27DD244C00AEDD40 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED0A27DD244C00AEDD40 /* WelcomeViewController.swift */; };
 		92FDED0E27DD27D800AEDD40 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED0D27DD27D800AEDD40 /* TitleSubtitleView.swift */; };
+		92FDED1227DD2F9B00AEDD40 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED1127DD2F9B00AEDD40 /* ContainerViewController.swift */; };
+		92FDED1527DD32AE00AEDD40 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED1427DD32AE00AEDD40 /* UIViewController+Child.swift */; };
+		92FDED1727DD352800AEDD40 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED1627DD352800AEDD40 /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		92FDED0427DD00EC00AEDD40 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		92FDED0A27DD244C00AEDD40 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		92FDED0D27DD27D800AEDD40 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
+		92FDED1127DD2F9B00AEDD40 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		92FDED1427DD32AE00AEDD40 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
+		92FDED1627DD352800AEDD40 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +199,9 @@
 		92FDED0327DD00D400AEDD40 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				92FDED0427DD00EC00AEDD40 /* Color.swift */,
+				92FDED1327DD328D00AEDD40 /* Extension */,
+				92FDED1027DD2F8A00AEDD40 /* ViewController */,
+				92FDED0F27DD2F6500AEDD40 /* Utility */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -221,6 +229,31 @@
 				92FDED0D27DD27D800AEDD40 /* TitleSubtitleView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		92FDED0F27DD2F6500AEDD40 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				92FDED0427DD00EC00AEDD40 /* Color.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		92FDED1027DD2F8A00AEDD40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				92FDED1127DD2F9B00AEDD40 /* ContainerViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		92FDED1327DD328D00AEDD40 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				92FDED1427DD32AE00AEDD40 /* UIViewController+Child.swift */,
+				92FDED1627DD352800AEDD40 /* UIView+Constraints.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,11 +337,14 @@
 				92FDECF527DCEE3B00AEDD40 /* Factory.swift in Sources */,
 				92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */,
 				92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */,
+				92FDED1227DD2F9B00AEDD40 /* ContainerViewController.swift in Sources */,
 				92FDED0E27DD27D800AEDD40 /* TitleSubtitleView.swift in Sources */,
 				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
 				92FDED0227DCFFFA00AEDD40 /* ShortenLinkview.swift in Sources */,
 				92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */,
+				92FDED1727DD352800AEDD40 /* UIView+Constraints.swift in Sources */,
 				92FDECFB27DCEF6B00AEDD40 /* Result.swift in Sources */,
+				92FDED1527DD32AE00AEDD40 /* UIViewController+Child.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
