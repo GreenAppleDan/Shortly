@@ -17,6 +17,10 @@
 		92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECE927DCC85700AEDD40 /* ShortenLinkEndpoint.swift */; };
 		92FDECEC27DCCB9300AEDD40 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECEB27DCCB9300AEDD40 /* ApiClient.swift */; };
 		92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECEE27DCEC8600AEDD40 /* Decoder.swift */; };
+		92FDECF527DCEE3B00AEDD40 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECF427DCEE3B00AEDD40 /* Factory.swift */; };
+		92FDECF827DCEED400AEDD40 /* ShortenUrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECF727DCEED400AEDD40 /* ShortenUrlService.swift */; };
+		92FDECFB27DCEF6B00AEDD40 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECFA27DCEF6B00AEDD40 /* Result.swift */; };
+		92FDECFD27DCF00200AEDD40 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECFC27DCF00200AEDD40 /* ApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		92FDECE927DCC85700AEDD40 /* ShortenLinkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenLinkEndpoint.swift; sourceTree = "<group>"; };
 		92FDECEB27DCCB9300AEDD40 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		92FDECEE27DCEC8600AEDD40 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		92FDECF427DCEE3B00AEDD40 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		92FDECF727DCEED400AEDD40 /* ShortenUrlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenUrlService.swift; sourceTree = "<group>"; };
+		92FDECFA27DCEF6B00AEDD40 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		92FDECFC27DCF00200AEDD40 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,7 @@
 		92FDECC827DCBF5F00AEDD40 /* Shortly */ = {
 			isa = PBXGroup;
 			children = (
+				92FDECF027DCEDBF00AEDD40 /* Business Logic */,
 				92FDECE027DCC58C00AEDD40 /* API */,
 				92FDECDD27DCBF9600AEDD40 /* Presentation */,
 				92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */,
@@ -85,6 +94,8 @@
 		92FDECE027DCC58C00AEDD40 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				92FDECF927DCEF6100AEDD40 /* Helper */,
+				92FDECF627DCEEC000AEDD40 /* Service */,
 				92FDECED27DCEC7100AEDD40 /* Utility */,
 				92FDECE327DCC6E700AEDD40 /* Endpoints */,
 				92FDECE127DCC61D00AEDD40 /* ApiRequestAdapter.swift */,
@@ -117,6 +128,47 @@
 				92FDECEE27DCEC8600AEDD40 /* Decoder.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		92FDECF027DCEDBF00AEDD40 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECF227DCEE2200AEDD40 /* Service */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		92FDECF227DCEE2200AEDD40 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECF327DCEE2A00AEDD40 /* DI */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		92FDECF327DCEE2A00AEDD40 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECF427DCEE3B00AEDD40 /* Factory.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		92FDECF627DCEEC000AEDD40 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECF727DCEED400AEDD40 /* ShortenUrlService.swift */,
+				92FDECFC27DCF00200AEDD40 /* ApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		92FDECF927DCEF6100AEDD40 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECFA27DCEF6B00AEDD40 /* Result.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,13 +242,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FDECEC27DCCB9300AEDD40 /* ApiClient.swift in Sources */,
+				92FDECF827DCEED400AEDD40 /* ShortenUrlService.swift in Sources */,
+				92FDECFD27DCF00200AEDD40 /* ApiService.swift in Sources */,
 				92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */,
 				92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */,
 				92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */,
 				92FDECDF27DCC04400AEDD40 /* MainViewController.swift in Sources */,
+				92FDECF527DCEE3B00AEDD40 /* Factory.swift in Sources */,
 				92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */,
 				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
 				92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */,
+				92FDECFB27DCEF6B00AEDD40 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
