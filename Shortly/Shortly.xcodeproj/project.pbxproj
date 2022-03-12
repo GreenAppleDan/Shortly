@@ -11,6 +11,12 @@
 		92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */; };
 		92FDECD627DCBF5F00AEDD40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD427DCBF5F00AEDD40 /* LaunchScreen.storyboard */; };
 		92FDECDF27DCC04400AEDD40 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECDE27DCC04400AEDD40 /* MainViewController.swift */; };
+		92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECE127DCC61D00AEDD40 /* ApiRequestAdapter.swift */; };
+		92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECE527DCC6FF00AEDD40 /* Endpoint.swift */; };
+		92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECE727DCC75300AEDD40 /* BaseEndpoint.swift */; };
+		92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECE927DCC85700AEDD40 /* ShortenLinkEndpoint.swift */; };
+		92FDECEC27DCCB9300AEDD40 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECEB27DCCB9300AEDD40 /* ApiClient.swift */; };
+		92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECEE27DCEC8600AEDD40 /* Decoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +26,12 @@
 		92FDECD527DCBF5F00AEDD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92FDECD727DCBF5F00AEDD40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FDECDE27DCC04400AEDD40 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		92FDECE127DCC61D00AEDD40 /* ApiRequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestAdapter.swift; sourceTree = "<group>"; };
+		92FDECE527DCC6FF00AEDD40 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		92FDECE727DCC75300AEDD40 /* BaseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndpoint.swift; sourceTree = "<group>"; };
+		92FDECE927DCC85700AEDD40 /* ShortenLinkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenLinkEndpoint.swift; sourceTree = "<group>"; };
+		92FDECEB27DCCB9300AEDD40 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		92FDECEE27DCEC8600AEDD40 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +64,7 @@
 		92FDECC827DCBF5F00AEDD40 /* Shortly */ = {
 			isa = PBXGroup;
 			children = (
+				92FDECE027DCC58C00AEDD40 /* API */,
 				92FDECDD27DCBF9600AEDD40 /* Presentation */,
 				92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */,
 				92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */,
@@ -67,6 +80,43 @@
 				92FDECDE27DCC04400AEDD40 /* MainViewController.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		92FDECE027DCC58C00AEDD40 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECED27DCEC7100AEDD40 /* Utility */,
+				92FDECE327DCC6E700AEDD40 /* Endpoints */,
+				92FDECE127DCC61D00AEDD40 /* ApiRequestAdapter.swift */,
+				92FDECEB27DCCB9300AEDD40 /* ApiClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		92FDECE327DCC6E700AEDD40 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECE427DCC6ED00AEDD40 /* Base */,
+				92FDECE927DCC85700AEDD40 /* ShortenLinkEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		92FDECE427DCC6ED00AEDD40 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECE527DCC6FF00AEDD40 /* Endpoint.swift */,
+				92FDECE727DCC75300AEDD40 /* BaseEndpoint.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		92FDECED27DCEC7100AEDD40 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				92FDECEE27DCEC8600AEDD40 /* Decoder.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +189,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92FDECEC27DCCB9300AEDD40 /* ApiClient.swift in Sources */,
+				92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */,
 				92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */,
+				92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */,
 				92FDECDF27DCC04400AEDD40 /* MainViewController.swift in Sources */,
+				92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */,
+				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
+				92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
