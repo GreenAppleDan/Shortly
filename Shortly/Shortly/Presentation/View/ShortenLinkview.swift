@@ -36,7 +36,7 @@ final class ShortenLinkview: UIView {
         NSLayoutConstraint.activate([
             shapeImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             shapeImageView.topAnchor.constraint(equalTo: topAnchor),
-            shapeImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 47.0/34.0)
+            shapeImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 47/34)
         ])
     }
     
