@@ -12,8 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private lazy var appViewController = MainViewController()
-
+    private let factory: Factory = BaseFactory()
+    
+    private lazy var appViewController = MainViewController(factory: factory)
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupWindow()
         return true

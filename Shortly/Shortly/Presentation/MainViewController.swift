@@ -9,8 +9,10 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    private let factory: Factory
     
-    init() {
+    init(factory: Factory) {
+        self.factory = factory
         super.init(nibName: nil, bundle: nil)
     }
     

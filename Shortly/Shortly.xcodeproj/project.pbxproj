@@ -21,6 +21,8 @@
 		92FDECF827DCEED400AEDD40 /* ShortenUrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECF727DCEED400AEDD40 /* ShortenUrlService.swift */; };
 		92FDECFB27DCEF6B00AEDD40 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECFA27DCEF6B00AEDD40 /* Result.swift */; };
 		92FDECFD27DCF00200AEDD40 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECFC27DCF00200AEDD40 /* ApiService.swift */; };
+		92FDED0227DCFFFA00AEDD40 /* ShortenLinkview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED0127DCFFFA00AEDD40 /* ShortenLinkview.swift */; };
+		92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDED0427DD00EC00AEDD40 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		92FDECF727DCEED400AEDD40 /* ShortenUrlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenUrlService.swift; sourceTree = "<group>"; };
 		92FDECFA27DCEF6B00AEDD40 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		92FDECFC27DCF00200AEDD40 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		92FDED0127DCFFFA00AEDD40 /* ShortenLinkview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenLinkview.swift; sourceTree = "<group>"; };
+		92FDED0427DD00EC00AEDD40 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 		92FDECDD27DCBF9600AEDD40 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				92FDED0327DD00D400AEDD40 /* Common */,
+				92FDECFE27DCFE9B00AEDD40 /* View */,
 				92FDECDE27DCC04400AEDD40 /* MainViewController.swift */,
 			);
 			path = Presentation;
@@ -171,6 +177,22 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		92FDECFE27DCFE9B00AEDD40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92FDED0127DCFFFA00AEDD40 /* ShortenLinkview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92FDED0327DD00D400AEDD40 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				92FDED0427DD00EC00AEDD40 /* Color.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,7 +272,9 @@
 				92FDECDF27DCC04400AEDD40 /* MainViewController.swift in Sources */,
 				92FDECF527DCEE3B00AEDD40 /* Factory.swift in Sources */,
 				92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */,
+				92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */,
 				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
+				92FDED0227DCFFFA00AEDD40 /* ShortenLinkview.swift in Sources */,
 				92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */,
 				92FDECFB27DCEF6B00AEDD40 /* Result.swift in Sources */,
 			);
