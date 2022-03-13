@@ -11,6 +11,10 @@
 		9246A43827DDF9FD00C8074E /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43727DDF9FD00C8074E /* SimpleButton.swift */; };
 		9246A43A27DDFD5600C8074E /* UIView+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43927DDFD5600C8074E /* UIView+Corners.swift */; };
 		9246A43E27DE034E00C8074E /* InvalidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43D27DE034E00C8074E /* InvalidatableTextField.swift */; };
+		9246A44527DE132400C8074E /* ScrollStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44427DE132400C8074E /* ScrollStackViewController.swift */; };
+		9246A44727DE144500C8074E /* LinkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44627DE144500C8074E /* LinkListViewController.swift */; };
+		9246A44A27DE14D200C8074E /* SavedLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9246A44927DE14D200C8074E /* SavedLinkView.xib */; };
+		9246A44C27DE166200C8074E /* SavedLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44B27DE166200C8074E /* SavedLinkView.swift */; };
 		92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */; };
 		92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */; };
 		92FDECD627DCBF5F00AEDD40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD427DCBF5F00AEDD40 /* LaunchScreen.storyboard */; };
@@ -41,6 +45,10 @@
 		9246A43D27DE034E00C8074E /* InvalidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidatableTextField.swift; sourceTree = "<group>"; };
 		9246A44127DE0A4D00C8074E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		9246A44227DE0A4D00C8074E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		9246A44427DE132400C8074E /* ScrollStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackViewController.swift; sourceTree = "<group>"; };
+		9246A44627DE144500C8074E /* LinkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListViewController.swift; sourceTree = "<group>"; };
+		9246A44927DE14D200C8074E /* SavedLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedLinkView.xib; sourceTree = "<group>"; };
+		9246A44B27DE166200C8074E /* SavedLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLinkView.swift; sourceTree = "<group>"; };
 		92FDECC627DCBF5F00AEDD40 /* Shortly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shortly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +108,24 @@
 				9246A44127DE0A4D00C8074E /* Poppins-Medium.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		9246A44327DE10CB00C8074E /* LinkListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9246A44827DE145C00C8074E /* View */,
+				9246A44627DE144500C8074E /* LinkListViewController.swift */,
+			);
+			path = LinkListViewController;
+			sourceTree = "<group>";
+		};
+		9246A44827DE145C00C8074E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9246A44927DE14D200C8074E /* SavedLinkView.xib */,
+				9246A44B27DE166200C8074E /* SavedLinkView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		92FDECBD27DCBF5E00AEDD40 = {
@@ -248,6 +274,7 @@
 		92FDED0627DD200B00AEDD40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9246A44327DE10CB00C8074E /* LinkListViewController */,
 				92FDED0727DD20DC00AEDD40 /* WelcomeViewController */,
 			);
 			path = ViewController;
@@ -282,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				92FDED1127DD2F9B00AEDD40 /* ContainerViewController.swift */,
+				9246A44427DE132400C8074E /* ScrollStackViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -356,6 +384,7 @@
 			files = (
 				92FDECD627DCBF5F00AEDD40 /* LaunchScreen.storyboard in Resources */,
 				92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */,
+				9246A44A27DE14D200C8074E /* SavedLinkView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +399,7 @@
 				92FDECF827DCEED400AEDD40 /* ShortenUrlService.swift in Sources */,
 				92FDECFD27DCF00200AEDD40 /* ApiService.swift in Sources */,
 				92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */,
+				9246A44727DE144500C8074E /* LinkListViewController.swift in Sources */,
 				92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */,
 				9246A43527DDE9CE00C8074E /* MainContainerViewController.swift in Sources */,
 				92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */,
@@ -380,8 +410,10 @@
 				9246A43E27DE034E00C8074E /* InvalidatableTextField.swift in Sources */,
 				92FDECE627DCC6FF00AEDD40 /* Endpoint.swift in Sources */,
 				92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */,
+				9246A44527DE132400C8074E /* ScrollStackViewController.swift in Sources */,
 				92FDED1227DD2F9B00AEDD40 /* ContainerViewController.swift in Sources */,
 				92FDED0E27DD27D800AEDD40 /* TitleSubtitleView.swift in Sources */,
+				9246A44C27DE166200C8074E /* SavedLinkView.swift in Sources */,
 				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
 				92FDED0227DCFFFA00AEDD40 /* ShortenLinkview.swift in Sources */,
 				92FDECE227DCC61D00AEDD40 /* ApiRequestAdapter.swift in Sources */,
