@@ -41,7 +41,7 @@ final class ShortenLinkview: UIView {
     }
     
     private func addTextField() -> UIView {
-        let textField = UITextField()
+        let textField = InvalidatableTextField(placeholder: "Please add a link here")
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
@@ -56,8 +56,9 @@ final class ShortenLinkview: UIView {
     }
     
     private func addButton(textField: UIView) {
-        let button = UIButton()
+        let button = SimpleButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("SHORTEN IT!", for: .normal)
         addSubview(button)
         
         NSLayoutConstraint.activate([
