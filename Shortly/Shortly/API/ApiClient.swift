@@ -76,4 +76,4 @@ final class Client: APIClient {
     }
 }
 
-fileprivate struct UknownError: Error {}
+

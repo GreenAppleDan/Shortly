@@ -11,6 +11,9 @@ class InvalidatableTextField: UITextField {
     
     private(set) var isInvalid = false
     
+    private var errorText: String? = nil
+    private var defaultPlaceholderText: String? = nil
+    
     private let textPadding = UIEdgeInsets(
             top: 0,
             left: 10,
@@ -21,6 +24,7 @@ class InvalidatableTextField: UITextField {
     convenience init(placeholder: String) {
         self.init(frame: .zero)
         self.placeholder = placeholder
+        self.defaultPlaceholderText = placeholder
     }
     
     override init(frame: CGRect) {
@@ -60,15 +64,25 @@ class InvalidatableTextField: UITextField {
         layer.borderColor = isInvalid ? UIColor.error.cgColor : nil
         
         let placeholderColor: UIColor = isInvalid ? .error : .inactive
+        
+        var placeholderText: String {
+            if isInvalid {
+                return errorText ?? ""
+            } else {
+                return defaultPlaceholderText ?? placeholder ?? ""
+            }
+        }
+        
         attributedPlaceholder = NSAttributedString(
-            string: placeholder ?? "",
+            string: placeholderText,
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
         )
         
         textColor = isInvalid ? .error : .black
     }
     
-    func markAsInvalid() {
+    func markAsInvalid(errorText: String? = nil) {
+        self.errorText = errorText
         isInvalid = true
         updateColors()
         updateBorderWidth()

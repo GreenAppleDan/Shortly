@@ -12,8 +12,9 @@ struct ShortenLinkEndpointResponse: Decodable {
     let result: ShortenedLinkData
 }
 
-struct ShortenedLinkData: Decodable {
+struct ShortenedLinkData: Codable {
     let fullShortLink: String
+    let originalLink: String
 }
 
 struct ShortenLinkEndpoint: BaseEndpoint {
@@ -31,7 +32,9 @@ struct ShortenLinkEndpoint: BaseEndpoint {
     }
     
     func makeRequest() throws -> URLRequest {
-        let url = URL(string: "shorten?url=\(linkString)")!
+        guard let url = URL(string: "shorten?url=\(linkString)") else {
+            throw InvalidURLError()
+        }
         return URLRequest(url: url)
     }
 }

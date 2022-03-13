@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol ShortenLinkviewDelegate: AnyObject {
+    func shortenLinkTextFieldTextDidChange(textField: InvalidatableTextField)
+    func shortenLinkButtonDidTap(textField: InvalidatableTextField)
+}
+
 final class ShortenLinkview: UIView {
+    
+    private weak var delegate: ShortenLinkviewDelegate?
+    
+    lazy var textField = InvalidatableTextField(placeholder: "Shorten a link here ...")
+    lazy var button = SimpleButton()
     
     init() {
         super.init(frame: .zero)
@@ -21,7 +31,7 @@ final class ShortenLinkview: UIView {
     private func setup() {
         backgroundColor = .darkPurple
         addShape()
-        let textField = addTextField()
+        addTextField()
         addButton(textField: textField)
     }
     
@@ -40,8 +50,7 @@ final class ShortenLinkview: UIView {
         ])
     }
     
-    private func addTextField() -> UIView {
-        let textField = InvalidatableTextField(placeholder: "Please add a link here")
+    private func addTextField() {
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
@@ -51,12 +60,9 @@ final class ShortenLinkview: UIView {
             trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 48),
             textField.heightAnchor.constraint(equalToConstant: 49)
         ])
-        
-        return textField
     }
     
     private func addButton(textField: UIView) {
-        let button = SimpleButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SHORTEN IT!", for: .normal)
         addSubview(button)

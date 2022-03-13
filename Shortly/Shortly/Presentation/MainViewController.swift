@@ -10,9 +10,14 @@ import UIKit
 final class MainViewController: UIViewController {
     
     private let factory: Factory
+    private let shortenUrlService: ShortenUrlService
+    
+    private var shortenLinkTextField: InvalidatableTextField!
+    private var shortenLinkButton: SimpleButton!
     
     init(factory: Factory) {
         self.factory = factory
+        self.shortenUrlService = factory.makeShortenUrlService()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +37,11 @@ final class MainViewController: UIViewController {
     
     private func addShortenLinkView() -> UIView {
         let shortenLinkView = ShortenLinkview()
+        
+        shortenLinkTextField = shortenLinkView.textField
+        shortenLinkButton = shortenLinkView.button
+        addTargetsToShortenViews()
+        
         shortenLinkView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(shortenLinkView)
@@ -61,5 +71,39 @@ final class MainViewController: UIViewController {
         ])
         
         mainContainerVc.didMove(toParent: self)
+    }
+    
+    private func addTargetsToShortenViews() {
+        shortenLinkTextField.addTarget(self, action: #selector(shortenLinkTextFieldDidChange), for: .editingChanged)
+        shortenLinkButton.addTarget(self, action: #selector(shortenLinkButtonDidTap), for: .touchUpInside)
+    }
+    
+    @objc private func shortenLinkButtonDidTap() {
+        
+        guard let linkString = shortenLinkTextField.text, !linkString.isEmpty else  {
+            shortenLinkTextField.markAsInvalid(errorText: "Please add a link here")
+            return
+        }
+        
+        shortenLinkButton.showLoading()
+        shortenLinkTextField.isUserInteractionEnabled = false
+        
+        shortenUrlService.shortenUrl(linkString: linkString) { [weak self] result in
+            
+            self?.shortenLinkButton.hideLoading()
+            self?.shortenLinkTextField.isUserInteractionEnabled = true
+            
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure:
+                self?.shortenLinkTextField.markAsInvalid()
+            }
+            
+        }
+    }
+    
+    @objc private func shortenLinkTextFieldDidChange() {
+        shortenLinkTextField.markAsValid()
     }
 }

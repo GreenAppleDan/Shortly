@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SimpleButton: UIButton {
+class SimpleButton: LoadableButton {
     
     var defaultBackgroundColor: UIColor { .lightBlue }
     
