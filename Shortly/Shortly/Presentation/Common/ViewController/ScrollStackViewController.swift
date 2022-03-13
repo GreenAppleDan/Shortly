@@ -9,6 +9,9 @@ import UIKit
 
 class ScrollStackViewController: UIViewController {
     
+    var stackViewLeftPadding: CGFloat { 0 }
+    var stackViewRightPadding: CGFloat { 0 }
+    
     let stackView = UIStackView()
     let scrollView = UIScrollView()
     
@@ -37,10 +40,10 @@ class ScrollStackViewController: UIViewController {
         scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentGuide.topAnchor),
+            stackView.topAnchor.constraint(equalTo: contentGuide.topAnchor, constant: 25),
             stackView.bottomAnchor.constraint(equalTo: contentGuide.bottomAnchor, constant: -20),
-            stackView.trailingAnchor.constraint(equalTo: contentGuide.trailingAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentGuide.trailingAnchor, constant: -stackViewRightPadding),
+            stackView.leadingAnchor.constraint(equalTo: contentGuide.leadingAnchor, constant: stackViewLeftPadding),
             contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor)
         ])
     }

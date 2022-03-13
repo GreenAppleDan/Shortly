@@ -9,8 +9,17 @@ import UIKit
 
 final class SavedLinkView: UIView {
     
-    init() {
+    private let fullLink: String
+    private let shortenedLink: String
+    
+    var onDelete: (() -> Void)?
+    
+    init(fullLink: String,
+         shortenedLink: String) {
+        self.fullLink = fullLink
+        self.shortenedLink = shortenedLink
         super.init(frame: .zero)
+        setup()
     }
     
     required init?(coder: NSCoder) {
@@ -18,6 +27,8 @@ final class SavedLinkView: UIView {
     }
     
     private func setup() {
+        backgroundColor = .white
+        setCorners(4)
         let deleteButton = addDeleteButton()
         addFullLinkLabel(deleteButton: deleteButton)
         let separator = addSeparator()
@@ -30,7 +41,10 @@ final class SavedLinkView: UIView {
         let image = #imageLiteral(resourceName: "del")
         deleteButton.setImage(image, for: .normal)
         
+        deleteButton.addTarget(self, action: #selector(deleteButtonDidTap), for: .touchUpInside)
+        
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(deleteButton)
         
         NSLayoutConstraint.activate([
             deleteButton.heightAnchor.constraint(equalToConstant: 18),
@@ -44,7 +58,10 @@ final class SavedLinkView: UIView {
     private func addFullLinkLabel(deleteButton: UIView) {
         let fullLinkLabel = UILabel()
         
+        fullLinkLabel.text = fullLink
+        
         fullLinkLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(fullLinkLabel)
         
         NSLayoutConstraint.activate([
             fullLinkLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
@@ -57,6 +74,7 @@ final class SavedLinkView: UIView {
         separator.backgroundColor = .inactive
         
         separator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(separator)
         
         NSLayoutConstraint.activate([
             separator.heightAnchor.constraint(equalToConstant: 1),
@@ -70,7 +88,9 @@ final class SavedLinkView: UIView {
     
     private func addShortenedLinkLabel(separator: UIView) -> UIView {
         let shortenedLinkLabel = UILabel()
+        shortenedLinkLabel.text = shortenedLink
         shortenedLinkLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(shortenedLinkLabel)
         
         NSLayoutConstraint.activate([
             shortenedLinkLabel.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 12),
@@ -84,6 +104,7 @@ final class SavedLinkView: UIView {
     private func addCopyButton(shortenedLinkLabel: UIView) {
         let copyButton = SimpleButton()
         copyButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(copyButton)
         
         NSLayoutConstraint.activate([
             copyButton.topAnchor.constraint(equalTo: shortenedLinkLabel.bottomAnchor, constant: 23),
@@ -92,5 +113,9 @@ final class SavedLinkView: UIView {
             bottomAnchor.constraint(equalTo: copyButton.bottomAnchor, constant: 23),
             copyButton.heightAnchor.constraint(equalToConstant: 39)
         ])
+    }
+    
+    @objc private func deleteButtonDidTap() {
+        onDelete?()
     }
 }

@@ -11,6 +11,7 @@ final class MainViewController: UIViewController {
     
     private let factory: Factory
     private let shortenUrlService: ShortenUrlService
+    private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
     
     private var shortenLinkTextField: InvalidatableTextField!
     private var shortenLinkButton: SimpleButton!
@@ -18,6 +19,7 @@ final class MainViewController: UIViewController {
     init(factory: Factory) {
         self.factory = factory
         self.shortenUrlService = factory.makeShortenUrlService()
+        self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -94,8 +96,8 @@ final class MainViewController: UIViewController {
             self?.shortenLinkTextField.isUserInteractionEnabled = true
             
             switch result {
-            case .success(let data):
-                print(data)
+            case .success(let shortenedLinkData):
+                self?.shortenedLinksDataProcessor.addLinkData(shortenedLinkData)
             case .failure:
                 self?.shortenLinkTextField.markAsInvalid()
             }

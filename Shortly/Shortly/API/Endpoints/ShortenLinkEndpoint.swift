@@ -12,7 +12,7 @@ struct ShortenLinkEndpointResponse: Decodable {
     let result: ShortenedLinkData
 }
 
-struct ShortenedLinkData: Codable {
+struct ShortenedLinkData: Codable, Equatable {
     let fullShortLink: String
     let originalLink: String
 }

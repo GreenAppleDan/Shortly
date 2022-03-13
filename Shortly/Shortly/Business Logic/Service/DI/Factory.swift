@@ -10,6 +10,7 @@ import Foundation
 protocol Factory {
     func makeShortenUrlService() -> ShortenUrlService
     func makeShortenedLinkDataStorage() -> ShortenedLinkDataStorage
+    func makeShortenedLinksDataProcessor() -> ShortenedLinksDataProcessor
 }
 
 final class BaseFactory: Factory {
@@ -22,11 +23,17 @@ final class BaseFactory: Factory {
     
     private lazy var shortenedLinkDataStorage: ShortenedLinkDataStorage = BaseShortenedLinkDataStorage()
     
+    private lazy var shortenedLinksDataProcessor: ShortenedLinksDataProcessor = ShortenedLinksPublisher(shortenedLinkDataStorage: shortenedLinkDataStorage)
+    
     func makeShortenUrlService() -> ShortenUrlService {
         shortenUrlService
     }
     
     func makeShortenedLinkDataStorage() -> ShortenedLinkDataStorage {
         shortenedLinkDataStorage
+    }
+    
+    func makeShortenedLinksDataProcessor() -> ShortenedLinksDataProcessor {
+        shortenedLinksDataProcessor
     }
 }

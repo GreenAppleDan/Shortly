@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import Combine
 
 final class MainContainerViewController: ContainerViewController {
     
     private lazy var welcomeViewController: WelcomeViewController = .init()
+    private let linksListViewController: LinkListViewController
     
     private let factory: Factory
+    private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
+    
+    private var shortenedLinkSubscription: AnyCancellable?
     
     init(factory: Factory) {
         self.factory = factory
+        self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
+        linksListViewController = .init(factory: factory)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,12 +31,19 @@ final class MainContainerViewController: ContainerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateState()
+        
+        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkCVS.sink { [weak self] shortenedLinkStream in
+            self?.updateState(linkData: shortenedLinkStream.shortenedLinks)
+        }
+        
+        updateState(linkData: shortenedLinksDataProcessor.shortenedLinkCVS.value.shortenedLinks)
     }
     
-    private func updateState() {
-        // TODO: update state when shortened links become more than 0 in count, or get back to zero count
-        
-        setContent(welcomeViewController, animated: true)
+    private func updateState(linkData: ShortenedLinks) {
+        if linkData.value.isEmpty, contentViewController !== welcomeViewController {
+            setContent(welcomeViewController, animated: true)
+        } else if !linkData.value.isEmpty, contentViewController !== linksListViewController {
+            setContent(linksListViewController, animated: true)
+        }
     }
 }
