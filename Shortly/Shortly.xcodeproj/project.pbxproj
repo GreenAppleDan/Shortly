@@ -13,7 +13,6 @@
 		9246A43E27DE034E00C8074E /* InvalidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43D27DE034E00C8074E /* InvalidatableTextField.swift */; };
 		9246A44527DE132400C8074E /* ScrollStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44427DE132400C8074E /* ScrollStackViewController.swift */; };
 		9246A44727DE144500C8074E /* LinkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44627DE144500C8074E /* LinkListViewController.swift */; };
-		9246A44A27DE14D200C8074E /* SavedLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9246A44927DE14D200C8074E /* SavedLinkView.xib */; };
 		9246A44C27DE166200C8074E /* SavedLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A44B27DE166200C8074E /* SavedLinkView.swift */; };
 		92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */; };
 		92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */; };
@@ -47,7 +46,6 @@
 		9246A44227DE0A4D00C8074E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		9246A44427DE132400C8074E /* ScrollStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackViewController.swift; sourceTree = "<group>"; };
 		9246A44627DE144500C8074E /* LinkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListViewController.swift; sourceTree = "<group>"; };
-		9246A44927DE14D200C8074E /* SavedLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedLinkView.xib; sourceTree = "<group>"; };
 		9246A44B27DE166200C8074E /* SavedLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLinkView.swift; sourceTree = "<group>"; };
 		92FDECC627DCBF5F00AEDD40 /* Shortly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shortly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		9246A44827DE145C00C8074E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9246A44927DE14D200C8074E /* SavedLinkView.xib */,
 				9246A44B27DE166200C8074E /* SavedLinkView.swift */,
 			);
 			path = View;
@@ -384,7 +381,6 @@
 			files = (
 				92FDECD627DCBF5F00AEDD40 /* LaunchScreen.storyboard in Resources */,
 				92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */,
-				9246A44A27DE14D200C8074E /* SavedLinkView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
