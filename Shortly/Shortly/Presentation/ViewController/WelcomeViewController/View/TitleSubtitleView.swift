@@ -34,6 +34,7 @@ final class TitleSubtitleView: UIView {
         title.text = titleText
         title.textAlignment = .center
         title.numberOfLines = 0
+        title.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(title)
         
@@ -52,6 +53,7 @@ final class TitleSubtitleView: UIView {
         subtitle.text = subtitleText
         subtitle.textAlignment = .center
         subtitle.numberOfLines = 0
+        subtitle.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(subtitle)
         

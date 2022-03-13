@@ -9,4 +9,5 @@ import UIKit
 
 extension UIColor {
     static var darkPurple: UIColor { UIColor(named: #function)! }
+    static var lightGray: UIColor { UIColor(named: #function)! }
 }

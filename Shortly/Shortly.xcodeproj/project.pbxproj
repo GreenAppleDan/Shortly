@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9246A43527DDE9CE00C8074E /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43427DDE9CE00C8074E /* MainContainerViewController.swift */; };
 		92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */; };
 		92FDECD327DCBF5F00AEDD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */; };
 		92FDECD627DCBF5F00AEDD40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FDECD427DCBF5F00AEDD40 /* LaunchScreen.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9246A43427DDE9CE00C8074E /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		92FDECC627DCBF5F00AEDD40 /* Shortly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shortly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				92FDED0327DD00D400AEDD40 /* Common */,
 				92FDECFE27DCFE9B00AEDD40 /* View */,
 				92FDECDE27DCC04400AEDD40 /* MainViewController.swift */,
+				9246A43427DDE9CE00C8074E /* MainContainerViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				92FDECFD27DCF00200AEDD40 /* ApiService.swift in Sources */,
 				92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */,
 				92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */,
+				9246A43527DDE9CE00C8074E /* MainContainerViewController.swift in Sources */,
 				92FDECEA27DCC85700AEDD40 /* ShortenLinkEndpoint.swift in Sources */,
 				92FDED0B27DD244C00AEDD40 /* WelcomeViewController.swift in Sources */,
 				92FDECDF27DCC04400AEDD40 /* MainViewController.swift in Sources */,
