@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupKeyboardActions()
         setup()
     }
     
@@ -80,7 +81,40 @@ final class MainViewController: UIViewController {
         shortenLinkButton.addTarget(self, action: #selector(shortenLinkButtonDidTap), for: .touchUpInside)
     }
     
+    private func setupKeyboardActions() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
+            .cgRectValue else { return }
+
+        view.frame.origin.y = -keyboardSize.height
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc private func shortenLinkButtonDidTap() {
+        
+        dismissKeyboard()
         
         guard let linkString = shortenLinkTextField.text, !linkString.isEmpty else  {
             shortenLinkTextField.markAsInvalid(errorText: "Please add a link here")
