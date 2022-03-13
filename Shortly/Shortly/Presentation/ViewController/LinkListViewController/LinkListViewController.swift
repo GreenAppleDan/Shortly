@@ -77,6 +77,11 @@ final class LinkListViewController: ScrollStackViewController {
             self?.shortenedLinksDataProcessor.removeLinkData(linkData)
         }
         
+        view.onCopy = { button in
+            UIPasteboard.general.string = linkData.fullShortLink
+            button.changeProperties(properties: .init(backgroundColor: .darkPurple, text: "COPIED!"), for: 3)
+        }
+        
         return view
     }
 }

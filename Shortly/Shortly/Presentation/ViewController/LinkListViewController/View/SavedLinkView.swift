@@ -13,6 +13,7 @@ final class SavedLinkView: UIView {
     private let shortenedLink: String
     
     var onDelete: (() -> Void)?
+    var onCopy: ((TemporaryStateChangingButton) -> Void)?
     
     init(fullLink: String,
          shortenedLink: String) {
@@ -89,6 +90,7 @@ final class SavedLinkView: UIView {
     private func addShortenedLinkLabel(separator: UIView) -> UIView {
         let shortenedLinkLabel = UILabel()
         shortenedLinkLabel.text = shortenedLink
+        shortenedLinkLabel.textColor = .lightBlue
         shortenedLinkLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(shortenedLinkLabel)
         
@@ -102,8 +104,12 @@ final class SavedLinkView: UIView {
     }
     
     private func addCopyButton(shortenedLinkLabel: UIView) {
-        let copyButton = SimpleButton()
+        let copyButton = TemporaryStateChangingButton()
+        copyButton.setTitle("COPY", for: .normal)
         copyButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        copyButton.addTarget(self, action: #selector(copyButtonDidTap(_:)), for: .touchUpInside)
+        
         addSubview(copyButton)
         
         NSLayoutConstraint.activate([
@@ -117,5 +123,9 @@ final class SavedLinkView: UIView {
     
     @objc private func deleteButtonDidTap() {
         onDelete?()
+    }
+    
+    @objc private func copyButtonDidTap(_ button: TemporaryStateChangingButton) {
+        onCopy?(button)
     }
 }
