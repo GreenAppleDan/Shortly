@@ -39,6 +39,8 @@
 		9246A43727DDF9FD00C8074E /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		9246A43927DDFD5600C8074E /* UIView+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corners.swift"; sourceTree = "<group>"; };
 		9246A43D27DE034E00C8074E /* InvalidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidatableTextField.swift; sourceTree = "<group>"; };
+		9246A44127DE0A4D00C8074E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		9246A44227DE0A4D00C8074E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		92FDECC627DCBF5F00AEDD40 /* Shortly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shortly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FDECC927DCBF5F00AEDD40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92FDECD227DCBF5F00AEDD40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +85,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		9246A43F27DE0A2500C8074E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9246A44027DE0A2A00C8074E /* Font */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		9246A44027DE0A2A00C8074E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9246A44227DE0A4D00C8074E /* Poppins-Bold.ttf */,
+				9246A44127DE0A4D00C8074E /* Poppins-Medium.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		92FDECBD27DCBF5E00AEDD40 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +121,7 @@
 		92FDECC827DCBF5F00AEDD40 /* Shortly */ = {
 			isa = PBXGroup;
 			children = (
+				9246A43F27DE0A2500C8074E /* Resource */,
 				92FDECF027DCEDBF00AEDD40 /* Business Logic */,
 				92FDECE027DCC58C00AEDD40 /* API */,
 				92FDECDD27DCBF9600AEDD40 /* Presentation */,
