@@ -58,6 +58,7 @@ final class ShortenLinkview: UIView {
     }
     
     private func addTextField() {
+        textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
