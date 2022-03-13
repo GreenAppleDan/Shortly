@@ -59,6 +59,7 @@ final class SavedLinkView: UIView {
     private func addFullLinkLabel(deleteButton: UIView) {
         let fullLinkLabel = UILabel()
         
+        fullLinkLabel.font = .poppins(type: .medium, size: 17)
         fullLinkLabel.text = fullLink
         
         fullLinkLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +90,7 @@ final class SavedLinkView: UIView {
     
     private func addShortenedLinkLabel(separator: UIView) -> UIView {
         let shortenedLinkLabel = UILabel()
+        shortenedLinkLabel.font = .poppins(type: .medium, size: 17)
         shortenedLinkLabel.text = shortenedLink
         shortenedLinkLabel.textColor = .lightBlue
         shortenedLinkLabel.translatesAutoresizingMaskIntoConstraints = false

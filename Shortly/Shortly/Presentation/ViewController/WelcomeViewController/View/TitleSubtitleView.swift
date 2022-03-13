@@ -31,6 +31,7 @@ final class TitleSubtitleView: UIView {
     private func addTitle() -> UIView {
         let title = UILabel()
         
+        title.font = .poppins(type: .bold, size: 20)
         title.text = titleText
         title.textAlignment = .center
         title.numberOfLines = 0
@@ -50,6 +51,7 @@ final class TitleSubtitleView: UIView {
     private func addSubtitle(title: UIView) {
         let subtitle = UILabel()
         
+        subtitle.font = .poppins(type: .medium, size: 17)
         subtitle.text = subtitleText
         subtitle.textAlignment = .center
         subtitle.numberOfLines = 0

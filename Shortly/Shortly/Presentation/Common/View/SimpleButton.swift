@@ -30,6 +30,7 @@ class SimpleButton: LoadableButton {
     private func commonInit() {
         isExclusiveTouch = true
         titleLabel?.adjustsFontForContentSizeCategory = true
+        titleLabel?.font = .poppins(type: .bold, size: 20)
         clipsToBounds = true
         setCorners(4)
         setColors()

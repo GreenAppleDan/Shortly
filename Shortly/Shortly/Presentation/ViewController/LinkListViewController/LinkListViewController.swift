@@ -64,6 +64,7 @@ final class LinkListViewController: ScrollStackViewController {
         let label = UILabel()
         label.text = "Your Link History"
         label.textAlignment = .center
+        label.font = .poppins(type: .medium, size: 17)
         
         addView(label)
     }

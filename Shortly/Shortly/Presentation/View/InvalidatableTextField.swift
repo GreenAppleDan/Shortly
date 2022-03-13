@@ -49,6 +49,7 @@ class InvalidatableTextField: UITextField {
     
     private func commonInit() {
         textAlignment = .center
+        font = .poppins(type: .medium, size: 17)
         adjustsFontForContentSizeCategory = true
         setCorners(4)
         backgroundColor = .white
@@ -75,7 +76,8 @@ class InvalidatableTextField: UITextField {
         
         attributedPlaceholder = NSAttributedString(
             string: placeholderText,
-            attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
+            attributes: [.foregroundColor: placeholderColor,
+                         .font: UIFont.poppins(type: .medium, size: 17)]
         )
         
         textColor = isInvalid ? .error : .black
