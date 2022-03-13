@@ -15,6 +15,7 @@ final class MainViewController: UIViewController {
     
     private var shortenLinkTextField: InvalidatableTextField!
     private var shortenLinkButton: SimpleButton!
+    private var shortenLinkView: ShortenLinkview!
     
     init(factory: Factory) {
         self.factory = factory
@@ -40,21 +41,17 @@ final class MainViewController: UIViewController {
     
     private func addShortenLinkView() -> UIView {
         let shortenLinkView = ShortenLinkview()
-        
+        let shortenLinkHeight: CGFloat = 204
+        shortenLinkView.frame = .init(x: 0,
+                                      y: view.bounds.height - shortenLinkHeight,
+                                      width: view.bounds.width,
+                                      height: shortenLinkHeight)
+        self.shortenLinkView = shortenLinkView
         shortenLinkTextField = shortenLinkView.textField
         shortenLinkButton = shortenLinkView.button
         addTargetsToShortenViews()
         
-        shortenLinkView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(shortenLinkView)
-        
-        NSLayoutConstraint.activate([
-            shortenLinkView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            shortenLinkView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            shortenLinkView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            shortenLinkView.heightAnchor.constraint(equalToConstant: 204)
-        ])
         
         return shortenLinkView
     }
@@ -62,16 +59,12 @@ final class MainViewController: UIViewController {
     private func addMainContainerVc(shortenLinkView: UIView) {
         let mainContainerVc = MainContainerViewController(factory: factory)
         addChild(mainContainerVc)
-        mainContainerVc.view.translatesAutoresizingMaskIntoConstraints = false
         
+        mainContainerVc.view.frame = .init(x: 0,
+                                           y: 0,
+                                           width: view.bounds.width,
+                                           height: view.bounds.height - shortenLinkView.bounds.height)
         view.addSubview(mainContainerVc.view)
-        
-        NSLayoutConstraint.activate([
-            mainContainerVc.view.topAnchor.constraint(equalTo: view.topAnchor),
-            mainContainerVc.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainContainerVc.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainContainerVc.view.bottomAnchor.constraint(equalTo: shortenLinkView.topAnchor)
-        ])
         
         mainContainerVc.didMove(toParent: self)
     }
@@ -101,11 +94,12 @@ final class MainViewController: UIViewController {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
             .cgRectValue else { return }
 
-        view.frame.origin.y = -keyboardSize.height
+        view.bringSubviewToFront(shortenLinkView)
+        shortenLinkView.frame.origin.y = view.bounds.height - shortenLinkView.bounds.height - keyboardSize.height
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
+        shortenLinkView.frame.origin.y = view.bounds.height - shortenLinkView.bounds.height
     }
     
     @objc func dismissKeyboard() {

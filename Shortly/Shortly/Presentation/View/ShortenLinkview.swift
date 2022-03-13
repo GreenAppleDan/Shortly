@@ -30,9 +30,16 @@ final class ShortenLinkview: UIView {
     
     private func setup() {
         backgroundColor = .darkPurple
+        addBackgroundView()
         addShape()
         addTextField()
         addButton(textField: textField)
+    }
+    
+    private func addBackgroundView() {
+        let view = UIView()
+        view.backgroundColor = .darkPurple
+        view.pin(to: self)
     }
     
     private func addShape() {
