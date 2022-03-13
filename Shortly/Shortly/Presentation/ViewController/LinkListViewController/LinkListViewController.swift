@@ -45,6 +45,11 @@ final class LinkListViewController: ScrollStackViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addGradientView()
+    }
+    
     private func setupUI(linkData: ShortenedLinks) {
         addTitle()
         
@@ -67,6 +72,15 @@ final class LinkListViewController: ScrollStackViewController {
         label.font = .poppins(type: .medium, size: 17)
         
         addView(label)
+    }
+    
+    private func addGradientView() {
+        let gradientView = UIView()
+        let height: CGFloat = 65
+        gradientView.frame = .init(x: 0, y: view.bounds.height - height, width: view.bounds.width, height: height)
+        view.addSubview(gradientView)
+        
+        gradientView.applyGradient(topColor: .white.withAlphaComponent(0), bottomColor: .lightGray)
     }
     
     private func createSavedLinkView(linkData: ShortenedLinkData) -> SavedLinkView {
