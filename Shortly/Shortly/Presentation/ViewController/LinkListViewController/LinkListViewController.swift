@@ -80,7 +80,7 @@ final class LinkListViewController: ScrollStackViewController {
         
         view.onCopy = { button in
             UIPasteboard.general.string = linkData.fullShortLink
-            button.changeProperties(properties: .init(backgroundColor: .darkPurple, text: "COPIED!"), for: 3)
+            button.changeProperties(properties: .init(backgroundColor: .darkPurple, text: "COPIED!"), for: 1)
         }
         
         return view
