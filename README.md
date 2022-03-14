@@ -17,3 +17,4 @@ Easy and fast way to shorten your links! API used - https://app.shrtco.de/docs
 - Supports iOS 13 and higher
 - No additional setup needed to launch the app
 - MVC architecture
+- Dark Theme is not supported yet
