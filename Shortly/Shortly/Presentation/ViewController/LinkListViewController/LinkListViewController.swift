@@ -16,6 +16,8 @@ final class LinkListViewController: ScrollStackViewController {
     private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
     private var shortenedLinkSubscription: AnyCancellable?
     
+    private var setupDidComplete = false
+    
     init(factory: Factory) {
         self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
         super.init(nibName: nil, bundle: nil)
@@ -31,13 +33,17 @@ final class LinkListViewController: ScrollStackViewController {
         stackView.spacing = 20
         view.backgroundColor = .lightGray
         
-        setupUI(linkData: shortenedLinksDataProcessor.shortenedLinkCVS.value.shortenedLinks)
-        
-        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkCVS.sink { [weak self] shortenedLinkStream in
+        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkPublisher.sink { [weak self] shortenedLinkStream in
+            
+            guard let self = self else { return }
+            
+            guard !self.setupUiIfNeeded(linkData: shortenedLinkStream.shortenedLinks) else {
+                return
+            }
             
             switch shortenedLinkStream.latestOperation {
             case .add(let linkData):
-                self?.addSavedLinkView(linkData: linkData)
+                self.addSavedLinkView(linkData: linkData)
             default:
                 break
             }
@@ -50,7 +56,11 @@ final class LinkListViewController: ScrollStackViewController {
         addGradientView()
     }
     
-    private func setupUI(linkData: ShortenedLinks) {
+    /// returns true if ui was set
+    private func setupUiIfNeeded(linkData: ShortenedLinks) -> Bool {
+        
+        guard !setupDidComplete else { return false }
+        
         addTitle()
         
         linkData.value.forEach { linkData in
@@ -58,6 +68,10 @@ final class LinkListViewController: ScrollStackViewController {
             let view = createSavedLinkView(linkData: linkData)
             addView(view)
         }
+        
+        setupDidComplete.toggle()
+        
+        return true
     }
     
     private func addSavedLinkView(linkData: ShortenedLinkData) {
@@ -81,6 +95,7 @@ final class LinkListViewController: ScrollStackViewController {
         view.addSubview(gradientView)
         
         gradientView.applyGradient(topColor: .white.withAlphaComponent(0), bottomColor: .lightGray)
+        gradientView.isUserInteractionEnabled = false
     }
     
     private func createSavedLinkView(linkData: ShortenedLinkData) -> SavedLinkView {

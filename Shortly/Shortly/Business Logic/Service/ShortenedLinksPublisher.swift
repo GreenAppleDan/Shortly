@@ -11,7 +11,7 @@ protocol ShortenedLinksDataProcessor {
     func addLinkData(_ linkData: ShortenedLinkData)
     func removeLinkData(_ linkData: ShortenedLinkData)
     
-    var shortenedLinkCVS: CurrentValueSubject<ShortenedLinkStream, Never> { get }
+    var shortenedLinkPublisher: AnyPublisher<ShortenedLinkStream, Never> { get }
 }
 
 struct ShortenedLinkStream {
@@ -31,7 +31,9 @@ class ShortenedLinksPublisher: ShortenedLinksDataProcessor {
     
     private var shortenedLinksubscription: AnyCancellable? = nil
     
-    let shortenedLinkCVS: CurrentValueSubject<ShortenedLinkStream, Never>
+    private let shortenedLinkCVS: CurrentValueSubject<ShortenedLinkStream, Never>
+    
+    lazy var shortenedLinkPublisher: AnyPublisher<ShortenedLinkStream, Never> =  shortenedLinkCVS.eraseToAnyPublisher()
     
     init(shortenedLinkDataStorage: ShortenedLinkDataStorage) {
         self.shortenedLinkDataStorage = shortenedLinkDataStorage
