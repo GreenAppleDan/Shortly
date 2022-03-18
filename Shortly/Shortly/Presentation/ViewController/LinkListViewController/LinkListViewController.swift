@@ -21,6 +21,10 @@ final class LinkListViewController: UIViewController {
     
     private var setupDidComplete = false
     
+    private let tableViewBottomInset: CGFloat = 65
+    private let tableViewTopInset: CGFloat = 25
+    
+    private lazy var titleViewModel = ShortenedLinkDataUniqueIdentifiable(shortenedLinkData: .init(fullShortLink: "", originalLink: ""))
     init(factory: Factory) {
         self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +53,14 @@ final class LinkListViewController: UIViewController {
     private func setupTableView() {
         setupTableViewPosition()
         
+        tableView.allowsSelection = false
+        
+        tableView.contentInset.top = tableViewTopInset
+        tableView.contentInset.bottom = tableViewBottomInset
+        
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
+        
         tableView.separatorColor = .clear
         tableView.backgroundColor = .lightGray
         
@@ -59,16 +71,7 @@ final class LinkListViewController: UIViewController {
     }
     
     private func setupTableViewPosition() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 25),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
-        ])
+        tableView.pin(to: view)
     }
     
     private func makeDataSource() -> DataSource {
@@ -77,13 +80,16 @@ final class LinkListViewController: UIViewController {
            
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: LinkListTitleTableViewCell.identifier, for: indexPath) as? LinkListTitleTableViewCell
-                cell?.configure(title: "Your Link History")
+                cell?.configure(title: "Your Link History", backgroundColor: .lightGray)
                 return cell
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: SavedLinkTableViewCell.identifier, for: indexPath) as? SavedLinkTableViewCell
             
-            cell?.configure(fullLink: shortenedLinkData.originalLink, shortenedLink: shortenedLinkData.fullShortLink)
+            cell?.configure(
+                fullLink: shortenedLinkData.originalLink,
+                shortenedLink: shortenedLinkData.fullShortLink,
+                backgroundColor: .white)
             
             cell?.onDelete = { [weak self] in
                 self?.shortenedLinksDataProcessor.removeLinkData(shortenedLinkData)
@@ -102,17 +108,20 @@ final class LinkListViewController: UIViewController {
     }
     
     func applySnapshot(shortenedLinks: [ShortenedLinkDataUniqueIdentifiable], animatingDifferences: Bool = true) {
-      var snapshot = Snapshot()
+        var snapshot = Snapshot()
         
-      snapshot.appendSections([.main])
-      snapshot.appendItems(shortenedLinks)
+        var viewModels = [titleViewModel]
+        viewModels.append(contentsOf: shortenedLinks)
         
-      dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModels)
+        
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
     private func addGradientView() {
         let gradientView = UIView()
-        let height: CGFloat = 65
+        let height: CGFloat = tableViewBottomInset
         gradientView.frame = .init(x: 0, y: view.bounds.height - height, width: view.bounds.width, height: height)
         view.addSubview(gradientView)
         

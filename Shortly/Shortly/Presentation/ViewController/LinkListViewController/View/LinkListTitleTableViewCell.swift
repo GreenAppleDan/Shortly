@@ -27,9 +27,11 @@ final class LinkListTitleTableViewCell: UITableViewCell {
         label.pin(to: self)
     }
     
-    func configure (title: String) {
+    func configure (title: String, backgroundColor: UIColor) {
         label.text = title
         label.textAlignment = .center
         label.font = .poppins(type: .medium, size: 17)
+        
+        self.backgroundColor = backgroundColor
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 final class SavedLinkTableViewCell: UITableViewCell {
     
+    private let mainContainer = UIView()
     private let deleteButton = UIButton()
     private let fullLinkLabel = UILabel()
     private let separator = UIView()
@@ -33,8 +34,11 @@ final class SavedLinkTableViewCell: UITableViewCell {
     // MARK: - Configuration
     
     func configure(fullLink: String,
-                   shortenedLink: String) {
+                   shortenedLink: String,
+                   backgroundColor: UIColor) {
+        self.backgroundColor = .clear
         contentView.isUserInteractionEnabled = false
+        configureMainContainer(backgroundColor: backgroundColor)
         configureDeleteButton()
         configureFullLinkLabel(fullLink: fullLink)
         configureSeparator()
@@ -44,11 +48,25 @@ final class SavedLinkTableViewCell: UITableViewCell {
     
     // MARK: - Private
     private func setupUI() {
+        addMainContainer()
         addDeleteButton()
         addFullLinkLabel()
         addSeparator()
         addShortenedLinkLabel()
         addCopyButton()
+    }
+    
+    private func addMainContainer() {
+        mainContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(mainContainer)
+        
+        NSLayoutConstraint.activate([
+            mainContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            mainContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            mainContainer.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            mainContainer.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     private func addDeleteButton() {
@@ -58,8 +76,8 @@ final class SavedLinkTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             deleteButton.heightAnchor.constraint(equalToConstant: 18),
             deleteButton.widthAnchor.constraint(equalToConstant: 14),
-            deleteButton.topAnchor.constraint(equalTo: topAnchor, constant: 24),
-            trailingAnchor.constraint(equalTo: deleteButton.trailingAnchor, constant: 26)])
+            deleteButton.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 24),
+            mainContainer.trailingAnchor.constraint(equalTo: deleteButton.trailingAnchor, constant: 26)])
     }
     
     private func addFullLinkLabel() {
@@ -67,8 +85,8 @@ final class SavedLinkTableViewCell: UITableViewCell {
         addSubview(fullLinkLabel)
         
         NSLayoutConstraint.activate([
-            fullLinkLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-            fullLinkLabel.topAnchor.constraint(equalTo: topAnchor, constant: 23),
+            fullLinkLabel.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 23),
+            fullLinkLabel.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 23),
             deleteButton.leadingAnchor.constraint(equalTo: fullLinkLabel.trailingAnchor, constant: 20)])
     }
     
@@ -78,9 +96,9 @@ final class SavedLinkTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             separator.heightAnchor.constraint(equalToConstant: 1),
-            separator.leadingAnchor.constraint(equalTo: leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: trailingAnchor),
-            separator.topAnchor.constraint(equalTo: topAnchor, constant: 57)
+            separator.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: mainContainer.trailingAnchor),
+            separator.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 57)
         ])
     }
     
@@ -90,8 +108,8 @@ final class SavedLinkTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             shortenedLinkLabel.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 12),
-            shortenedLinkLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-            trailingAnchor.constraint(equalTo: shortenedLinkLabel.trailingAnchor, constant: 23)
+            shortenedLinkLabel.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 23),
+            mainContainer.trailingAnchor.constraint(equalTo: shortenedLinkLabel.trailingAnchor, constant: 23)
         ])
     }
     
@@ -102,11 +120,16 @@ final class SavedLinkTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             copyButton.topAnchor.constraint(equalTo: shortenedLinkLabel.bottomAnchor, constant: 23),
-            copyButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-            trailingAnchor.constraint(equalTo: copyButton.trailingAnchor, constant: 23),
-            bottomAnchor.constraint(equalTo: copyButton.bottomAnchor, constant: 23),
+            copyButton.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 23),
+            mainContainer.trailingAnchor.constraint(equalTo: copyButton.trailingAnchor, constant: 23),
+            mainContainer.bottomAnchor.constraint(equalTo: copyButton.bottomAnchor, constant: 23),
             copyButton.heightAnchor.constraint(equalToConstant: 39)
         ])
+    }
+    
+    private func configureMainContainer(backgroundColor: UIColor) {
+        mainContainer.backgroundColor = backgroundColor
+        mainContainer.setCorners(4)
     }
     
     private func configureDeleteButton() {
