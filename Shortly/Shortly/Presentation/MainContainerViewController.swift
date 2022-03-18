@@ -31,10 +31,9 @@ final class MainContainerViewController: ContainerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setContent(linksListViewController, animated: false)
         
-        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkPublisher.sink { [weak self] shortenedLinkStream in
-            self?.updateState(linkData: shortenedLinkStream.shortenedLinks)
+        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkPublisher.sink { [weak self] shortenedLinks in
+            self?.updateState(linkData: shortenedLinks)
         }
     }
     

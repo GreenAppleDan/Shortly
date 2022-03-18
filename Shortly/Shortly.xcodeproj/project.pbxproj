@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923C45D827E493490066B828 /* SavedLinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C45D727E493490066B828 /* SavedLinkTableViewCell.swift */; };
+		923C45DA27E4986C0066B828 /* LinkListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C45D927E4986C0066B828 /* LinkListTitleTableViewCell.swift */; };
+		923C45DD27E4A0FD0066B828 /* LinkListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C45DC27E4A0FD0066B828 /* LinkListSection.swift */; };
 		9246A43527DDE9CE00C8074E /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43427DDE9CE00C8074E /* MainContainerViewController.swift */; };
 		9246A43827DDF9FD00C8074E /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43727DDF9FD00C8074E /* SimpleButton.swift */; };
 		9246A43A27DDFD5600C8074E /* UIView+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246A43927DDFD5600C8074E /* UIView+Corners.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		923C45D727E493490066B828 /* SavedLinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLinkTableViewCell.swift; sourceTree = "<group>"; };
+		923C45D927E4986C0066B828 /* LinkListTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListTitleTableViewCell.swift; sourceTree = "<group>"; };
+		923C45DC27E4A0FD0066B828 /* LinkListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListSection.swift; sourceTree = "<group>"; };
 		9246A43427DDE9CE00C8074E /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		9246A43727DDF9FD00C8074E /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		9246A43927DDFD5600C8074E /* UIView+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corners.swift"; sourceTree = "<group>"; };
@@ -101,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		923C45DB27E4A0F10066B828 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				923C45DC27E4A0FD0066B828 /* LinkListSection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9246A43627DDF99C00C8074E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +146,7 @@
 		9246A44327DE10CB00C8074E /* LinkListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				923C45DB27E4A0F10066B828 /* Model */,
 				9246A44827DE145C00C8074E /* View */,
 				9246A44627DE144500C8074E /* LinkListViewController.swift */,
 			);
@@ -142,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				9246A44B27DE166200C8074E /* SavedLinkView.swift */,
+				923C45D727E493490066B828 /* SavedLinkTableViewCell.swift */,
+				923C45D927E4986C0066B828 /* LinkListTitleTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,6 +468,7 @@
 				92FDECE827DCC75300AEDD40 /* BaseEndpoint.swift in Sources */,
 				9246A44727DE144500C8074E /* LinkListViewController.swift in Sources */,
 				92FDECCA27DCBF5F00AEDD40 /* AppDelegate.swift in Sources */,
+				923C45DA27E4986C0066B828 /* LinkListTitleTableViewCell.swift in Sources */,
 				9246A45127DE1FE700C8074E /* ShortenedLinkDataStorage.swift in Sources */,
 				9246A45B27DE545600C8074E /* LoadableButton.swift in Sources */,
 				9246A43527DDE9CE00C8074E /* MainContainerViewController.swift in Sources */,
@@ -466,9 +484,11 @@
 				92FDED0527DD00EC00AEDD40 /* Color.swift in Sources */,
 				9246A44527DE132400C8074E /* ScrollStackViewController.swift in Sources */,
 				92FDED1227DD2F9B00AEDD40 /* ContainerViewController.swift in Sources */,
+				923C45D827E493490066B828 /* SavedLinkTableViewCell.swift in Sources */,
 				9246A46227DE813200C8074E /* Font.swift in Sources */,
 				92FDED0E27DD27D800AEDD40 /* TitleSubtitleView.swift in Sources */,
 				9246A44C27DE166200C8074E /* SavedLinkView.swift in Sources */,
+				923C45DD27E4A0FD0066B828 /* LinkListSection.swift in Sources */,
 				92FDECEF27DCEC8600AEDD40 /* Decoder.swift in Sources */,
 				92FDED0227DCFFFA00AEDD40 /* ShortenLinkview.swift in Sources */,
 				9246A46627DEA5BC00C8074E /* UIView+Gradient.swift in Sources */,

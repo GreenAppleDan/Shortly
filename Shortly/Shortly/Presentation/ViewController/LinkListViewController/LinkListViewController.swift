@@ -8,10 +8,13 @@
 import UIKit
 import Combine
 
-final class LinkListViewController: ScrollStackViewController {
+final class LinkListViewController: UIViewController {
     
-    override var stackViewLeftPadding: CGFloat { 25 }
-    override var stackViewRightPadding: CGFloat { 25 }
+    typealias DataSource = UITableViewDiffableDataSource<LinkListSection, ShortenedLinkDataUniqueIdentifiable>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<LinkListSection, ShortenedLinkDataUniqueIdentifiable>
+    
+    private let tableView = UITableView()
+    private lazy var dataSource = makeDataSource()
     
     private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
     private var shortenedLinkSubscription: AnyCancellable?
@@ -29,25 +32,12 @@ final class LinkListViewController: ScrollStackViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        stackView.spacing = 20
         view.backgroundColor = .lightGray
         
-        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkPublisher.sink { [weak self] shortenedLinkStream in
-            
-            guard let self = self else { return }
-            
-            guard !self.setupUiIfNeeded(linkData: shortenedLinkStream.shortenedLinks) else {
-                return
-            }
-            
-            switch shortenedLinkStream.latestOperation {
-            case .add(let linkData):
-                self.addSavedLinkView(linkData: linkData)
-            default:
-                break
-            }
-            
+        setupTableView()
+        
+        shortenedLinkSubscription = shortenedLinksDataProcessor.shortenedLinkPublisher.sink { [weak self] shortenedLinks in
+            self?.applySnapshot(shortenedLinks: shortenedLinks.value)
         }
     }
     
@@ -56,36 +46,56 @@ final class LinkListViewController: ScrollStackViewController {
         addGradientView()
     }
     
-    /// returns true if ui was set
-    private func setupUiIfNeeded(linkData: ShortenedLinks) -> Bool {
+    private func setupTableView() {
+        setupTableViewPosition()
         
-        guard !setupDidComplete else { return false }
+        tableView.separatorColor = .clear
+        tableView.backgroundColor = .lightGray
         
-        addTitle()
+        tableView.register(LinkListTitleTableViewCell.self, forCellReuseIdentifier: LinkListTitleTableViewCell.identifier)
+        tableView.register(SavedLinkTableViewCell.self, forCellReuseIdentifier: SavedLinkTableViewCell.identifier)
         
-        linkData.value.forEach { linkData in
+        applySnapshot(shortenedLinks: [], animatingDifferences: false)
+    }
+    
+    private func setupTableViewPosition() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 25),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
+        ])
+    }
+    
+    private func makeDataSource() -> DataSource {
+        
+        let dataSource = DataSource(tableView: tableView) { (tableView, indexPath, shortenedLinkData) in
+           
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: LinkListTitleTableViewCell.identifier, for: indexPath) as? LinkListTitleTableViewCell
+                cell?.configure(title: "Your Link History")
+                return cell
+            }
             
-            let view = createSavedLinkView(linkData: linkData)
-            addView(view)
+            let cell = tableView.dequeueReusableCell(withIdentifier: SavedLinkTableViewCell.identifier, for: indexPath) as? SavedLinkTableViewCell
+            cell?.configure(fullLink: shortenedLinkData.originalLink, shortenedLink: shortenedLinkData.fullShortLink)
+            return cell
         }
         
-        setupDidComplete.toggle()
-        
-        return true
+        return dataSource
     }
     
-    private func addSavedLinkView(linkData: ShortenedLinkData) {
-        let view = createSavedLinkView(linkData: linkData)
-        addView(view)
-    }
-    
-    private func addTitle() {
-        let label = UILabel()
-        label.text = "Your Link History"
-        label.textAlignment = .center
-        label.font = .poppins(type: .medium, size: 17)
+    func applySnapshot(shortenedLinks: [ShortenedLinkDataUniqueIdentifiable], animatingDifferences: Bool = true) {
+      var snapshot = Snapshot()
         
-        addView(label)
+      snapshot.appendSections([.main])
+      snapshot.appendItems(shortenedLinks)
+        
+      dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
     private func addGradientView() {
@@ -96,22 +106,5 @@ final class LinkListViewController: ScrollStackViewController {
         
         gradientView.applyGradient(topColor: .white.withAlphaComponent(0), bottomColor: .lightGray)
         gradientView.isUserInteractionEnabled = false
-    }
-    
-    private func createSavedLinkView(linkData: ShortenedLinkData) -> SavedLinkView {
-        let view = SavedLinkView(fullLink: linkData.originalLink, shortenedLink: linkData.fullShortLink)
-        
-        view.onDelete = { [weak self] in
-            self?.stackView.removeArrangedSubview(view)
-            view.removeFromSuperview()
-            self?.shortenedLinksDataProcessor.removeLinkData(linkData)
-        }
-        
-        view.onCopy = { button in
-            UIPasteboard.general.string = linkData.fullShortLink
-            button.changeProperties(properties: .init(backgroundColor: .darkPurple, text: "COPIED!"), for: 1)
-        }
-        
-        return view
     }
 }

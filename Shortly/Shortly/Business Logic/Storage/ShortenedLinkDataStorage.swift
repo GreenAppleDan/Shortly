@@ -8,15 +8,15 @@
 import Foundation
 
 struct ShortenedLinks: Codable {
-    var value: [ShortenedLinkData]
+    var value: [ShortenedLinkDataUniqueIdentifiable]
     
-    mutating func removeLinkData(_ linkData: ShortenedLinkData) {
+    mutating func removeLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable) {
         if let index = value.firstIndex(of: linkData) {
             value.remove(at: index)
         }
     }
     
-    mutating func addLinkData(_ linkData: ShortenedLinkData) {
+    mutating func addLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable) {
         value.append(linkData)
     }
 }

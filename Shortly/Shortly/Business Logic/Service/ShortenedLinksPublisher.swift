@@ -8,21 +8,10 @@
 import Combine
 
 protocol ShortenedLinksDataProcessor {
-    func addLinkData(_ linkData: ShortenedLinkData)
-    func removeLinkData(_ linkData: ShortenedLinkData)
+    func addLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable)
+    func removeLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable)
     
-    var shortenedLinkPublisher: AnyPublisher<ShortenedLinkStream, Never> { get }
-}
-
-struct ShortenedLinkStream {
-    
-    enum OperationType {
-        case add(ShortenedLinkData)
-        case remove(ShortenedLinkData)
-    }
-    
-    let shortenedLinks: ShortenedLinks
-    let latestOperation: OperationType?
+    var shortenedLinkPublisher: AnyPublisher<ShortenedLinks, Never> { get }
 }
 
 class ShortenedLinksPublisher: ShortenedLinksDataProcessor {
@@ -31,29 +20,28 @@ class ShortenedLinksPublisher: ShortenedLinksDataProcessor {
     
     private var shortenedLinksubscription: AnyCancellable? = nil
     
-    private let shortenedLinkCVS: CurrentValueSubject<ShortenedLinkStream, Never>
+    private let shortenedLinkCVS: CurrentValueSubject<ShortenedLinks, Never>
     
-    lazy var shortenedLinkPublisher: AnyPublisher<ShortenedLinkStream, Never> =  shortenedLinkCVS.eraseToAnyPublisher()
+    lazy var shortenedLinkPublisher: AnyPublisher<ShortenedLinks, Never> =  shortenedLinkCVS.eraseToAnyPublisher()
     
     init(shortenedLinkDataStorage: ShortenedLinkDataStorage) {
         self.shortenedLinkDataStorage = shortenedLinkDataStorage
-        shortenedLinkCVS = CurrentValueSubject(.init(shortenedLinks: shortenedLinkDataStorage.shortenedLinks,
-                                                     latestOperation: nil))
+        shortenedLinkCVS = CurrentValueSubject(shortenedLinkDataStorage.shortenedLinks)
         
-        shortenedLinksubscription = shortenedLinkCVS.sink { [weak self] shortenedLinkStream in
-            self?.shortenedLinkDataStorage.shortenedLinks = shortenedLinkStream.shortenedLinks
+        shortenedLinksubscription = shortenedLinkCVS.sink { [weak self] shortenedLinks in
+            self?.shortenedLinkDataStorage.shortenedLinks = shortenedLinks
         }
     }
     
-    func addLinkData(_ linkData: ShortenedLinkData) {
-        var shortenedLinks = shortenedLinkCVS.value.shortenedLinks
+    func addLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable) {
+        var shortenedLinks = shortenedLinkCVS.value
         shortenedLinks.addLinkData(linkData)
-        shortenedLinkCVS.send(.init(shortenedLinks: shortenedLinks, latestOperation: .add(linkData)))
+        shortenedLinkCVS.send(shortenedLinks)
     }
     
-    func removeLinkData(_ linkData: ShortenedLinkData) {
-        var shortenedLinks = shortenedLinkCVS.value.shortenedLinks
+    func removeLinkData(_ linkData: ShortenedLinkDataUniqueIdentifiable) {
+        var shortenedLinks = shortenedLinkCVS.value
         shortenedLinks.removeLinkData(linkData)
-        shortenedLinkCVS.send(.init(shortenedLinks: shortenedLinks, latestOperation: .remove(linkData)))
+        shortenedLinkCVS.send(shortenedLinks)
     }
 }
