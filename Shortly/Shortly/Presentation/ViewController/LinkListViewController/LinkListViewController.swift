@@ -25,6 +25,7 @@ final class LinkListViewController: UIViewController {
     private let tableViewTopInset: CGFloat = 25
     
     private lazy var titleViewModel = ShortenedLinkDataUniqueIdentifiable(shortenedLinkData: .init(fullShortLink: "", originalLink: ""))
+    
     init(factory: Factory) {
         self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +50,21 @@ final class LinkListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         addGradientView()
     }
+    
+    private func addGradientView() {
+        let gradientView = UIView()
+        let height: CGFloat = tableViewBottomInset
+        gradientView.frame = .init(x: 0, y: view.bounds.height - height, width: view.bounds.width, height: height)
+        view.addSubview(gradientView)
+        
+        gradientView.applyGradient(topColor: .white.withAlphaComponent(0), bottomColor: .lightGray)
+        gradientView.isUserInteractionEnabled = false
+    }
+}
+
+// MARK: - UITableView
+
+extension LinkListViewController {
     
     private func setupTableView() {
         setupTableViewPosition()
@@ -117,15 +133,5 @@ final class LinkListViewController: UIViewController {
         snapshot.appendItems(viewModels)
         
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-    }
-    
-    private func addGradientView() {
-        let gradientView = UIView()
-        let height: CGFloat = tableViewBottomInset
-        gradientView.frame = .init(x: 0, y: view.bounds.height - height, width: view.bounds.width, height: height)
-        view.addSubview(gradientView)
-        
-        gradientView.applyGradient(topColor: .white.withAlphaComponent(0), bottomColor: .lightGray)
-        gradientView.isUserInteractionEnabled = false
     }
 }
