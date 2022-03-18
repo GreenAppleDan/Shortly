@@ -34,11 +34,12 @@ final class SavedLinkTableViewCell: UITableViewCell {
     
     func configure(fullLink: String,
                    shortenedLink: String) {
+        contentView.isUserInteractionEnabled = false
         configureDeleteButton()
         configureFullLinkLabel(fullLink: fullLink)
         configureSeparator()
         configureShortenedLinkLabel(shortenedLink: shortenedLink)
-        addCopyButton()
+        configureCopyButton()
     }
     
     // MARK: - Private
@@ -130,7 +131,7 @@ final class SavedLinkTableViewCell: UITableViewCell {
         shortenedLinkLabel.textColor = .lightBlue
     }
     
-    private func configureAddCopyButton() {
+    private func configureCopyButton() {
         copyButton.setTitle("COPY", for: .normal)
         copyButton.addTarget(self, action: #selector(copyButtonDidTap(_:)), for: .touchUpInside)
     }

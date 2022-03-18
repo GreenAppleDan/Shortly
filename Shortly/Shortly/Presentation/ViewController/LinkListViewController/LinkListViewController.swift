@@ -82,7 +82,19 @@ final class LinkListViewController: UIViewController {
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: SavedLinkTableViewCell.identifier, for: indexPath) as? SavedLinkTableViewCell
+            
             cell?.configure(fullLink: shortenedLinkData.originalLink, shortenedLink: shortenedLinkData.fullShortLink)
+            
+            cell?.onDelete = { [weak self] in
+                self?.shortenedLinksDataProcessor.removeLinkData(shortenedLinkData)
+            }
+            
+            cell?.onCopy = { button in
+                UIPasteboard.general.string = shortenedLinkData.fullShortLink
+                button.changeProperties(properties: .init(backgroundColor: .darkPurple, text: "COPIED!"), for: 1)
+            }
+
+            
             return cell
         }
         
