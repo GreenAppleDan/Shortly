@@ -14,7 +14,7 @@ protocol RequestAdapter {
 /// Adapter for API calls
 final class ApiRequestAdapter: RequestAdapter {
 
-    let baseUrl = URL(string: "https://api.shrtco.de/v2/")!
+    private let baseUrl = URL(string: "https://api.shrtco.de/v2/")!
     
     func adapt(_ urlRequest: URLRequest) -> URLRequest {
         guard let url = urlRequest.url else { return urlRequest }

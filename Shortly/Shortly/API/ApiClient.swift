@@ -50,14 +50,14 @@ final class Client: APIClient {
                 let task = session.dataTask(with: request) { [unowned self] (data, _, error) in
                     
                     if let error = error {
-                        
                         main { completionHandler(.failure(error)) }
                     } else if let data = data {
-                        
                         do {
                             let content = try endpoint.content(with: data)
                             main { completionHandler(.success(content)) }
-                        } catch {  main { completionHandler(.failure(error)) } }
+                        } catch {
+                            main { completionHandler(.failure(error)) }
+                        }
                         
                     } else {
                         main { completionHandler(.failure(UknownError())) }
@@ -72,7 +72,7 @@ final class Client: APIClient {
     
     /// asynchronously add operation on the main queue
     private func main(completion: @escaping (() -> Void)) {
-        completionQueue.async { completion() }
+        completionQueue.async(execute: completion)
     }
 }
 

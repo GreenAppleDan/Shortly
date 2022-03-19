@@ -14,7 +14,7 @@ protocol ShortenedLinksDataProcessor {
     var shortenedLinkPublisher: AnyPublisher<ShortenedLinks, Never> { get }
 }
 
-class ShortenedLinksPublisher: ShortenedLinksDataProcessor {
+final class ShortenedLinksPublisher: ShortenedLinksDataProcessor {
     
     private var shortenedLinkDataStorage: ShortenedLinkDataStorage
     
