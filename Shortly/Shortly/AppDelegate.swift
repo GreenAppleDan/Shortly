@@ -12,9 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private let factory: Factory = BaseFactory()
-    
-    private lazy var appViewController = MainViewController(factory: factory)
+    private lazy var appViewController = MainViewController(
+        shortenUrlService: BaseFactory.shared.makeShortenUrlService(),
+        shortenedLinksDataProcessor: BaseFactory.shared.makeShortenedLinksDataProcessor())
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupWindow()

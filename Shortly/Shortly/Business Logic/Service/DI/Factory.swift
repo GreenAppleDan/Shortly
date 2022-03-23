@@ -7,13 +7,10 @@
 
 import Foundation
 
-protocol Factory {
-    func makeShortenUrlService() -> ShortenUrlService
-    func makeShortenedLinkDataStorage() -> ShortenedLinkDataStorage
-    func makeShortenedLinksDataProcessor() -> ShortenedLinksDataProcessor
-}
-
-final class BaseFactory: Factory {
+final class BaseFactory {
+    
+    static let shared = BaseFactory()
+    private init() {}
     
     private lazy var requestAdapter: RequestAdapter = ApiRequestAdapter()
     

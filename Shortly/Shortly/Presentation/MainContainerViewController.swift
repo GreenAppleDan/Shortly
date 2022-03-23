@@ -13,15 +13,13 @@ final class MainContainerViewController: ContainerViewController {
     private lazy var welcomeViewController: WelcomeViewController = .init()
     private let linksListViewController: LinkListViewController
     
-    private let factory: Factory
     private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
     
     private var shortenedLinkSubscription: AnyCancellable?
     
-    init(factory: Factory) {
-        self.factory = factory
-        self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
-        linksListViewController = .init(factory: factory)
+    init(shortenedLinksDataProcessor: ShortenedLinksDataProcessor) {
+        self.shortenedLinksDataProcessor = shortenedLinksDataProcessor
+        linksListViewController = .init(shortenedLinksDataProcessor: shortenedLinksDataProcessor)
         super.init(nibName: nil, bundle: nil)
     }
     

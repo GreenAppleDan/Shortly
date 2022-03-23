@@ -9,7 +9,6 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private let factory: Factory
     private let shortenUrlService: ShortenUrlService
     private let shortenedLinksDataProcessor: ShortenedLinksDataProcessor
     
@@ -17,10 +16,10 @@ final class MainViewController: UIViewController {
     private var shortenLinkButton: SimpleButton!
     private var shortenLinkView: ShortenLinkview!
     
-    init(factory: Factory) {
-        self.factory = factory
-        self.shortenUrlService = factory.makeShortenUrlService()
-        self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
+    init(shortenUrlService: ShortenUrlService,
+         shortenedLinksDataProcessor: ShortenedLinksDataProcessor) {
+        self.shortenUrlService = shortenUrlService
+        self.shortenedLinksDataProcessor = shortenedLinksDataProcessor
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -57,7 +56,7 @@ final class MainViewController: UIViewController {
     }
     
     private func addMainContainerVc(shortenLinkView: UIView) {
-        let mainContainerVc = MainContainerViewController(factory: factory)
+        let mainContainerVc = MainContainerViewController(shortenedLinksDataProcessor: BaseFactory.shared.makeShortenedLinksDataProcessor())
         addChild(mainContainerVc)
         
         mainContainerVc.view.frame = .init(x: 0,

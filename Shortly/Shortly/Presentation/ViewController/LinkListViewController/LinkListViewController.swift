@@ -26,8 +26,8 @@ final class LinkListViewController: UIViewController {
     
     private lazy var titleViewModel = ShortenedLinkDataUniqueIdentifiable(shortenedLinkData: .init(fullShortLink: "", originalLink: ""))
     
-    init(factory: Factory) {
-        self.shortenedLinksDataProcessor = factory.makeShortenedLinksDataProcessor()
+    init(shortenedLinksDataProcessor: ShortenedLinksDataProcessor) {
+        self.shortenedLinksDataProcessor = shortenedLinksDataProcessor
         super.init(nibName: nil, bundle: nil)
     }
     
